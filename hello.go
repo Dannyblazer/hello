@@ -2,14 +2,16 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 func main() {
-	fmt.Println("You're about to enter the cave and there's a sign")
-	var command = "Check out the sign"
-	var read = strings.Contains(command, "sign")
-	fmt.Println("Need to read sign:", read)
-	var check = "zax" > "zap"
-	fmt.Println(check)
+	var checkString = "go west"
+
+	if checkString == "go east" {
+		fmt.Println("Head up to the mountains")
+	} else if checkString == "go west" {
+		fmt.Println("Go to the beach")
+	} else {
+		fmt.Println("Nah I didn't get that!")
+	}
 }
