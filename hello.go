@@ -2,16 +2,16 @@ package main
 
 import (
 	"fmt"
+	"math/rand"
 )
 
 func main() {
-	var checkString = "go west"
 
-	if checkString == "go east" {
-		fmt.Println("Head up to the mountains")
-	} else if checkString == "go west" {
-		fmt.Println("Go to the beach")
+	if num := rand.Intn(3); num == 0 {
+		fmt.Println("Yeah, 0")
+	} else if num == 1 {
+		fmt.Println("Okay, 1")
 	} else {
-		fmt.Println("Nah I didn't get that!")
+		fmt.Println("Alright, 3")
 	}
 }
