@@ -2,16 +2,15 @@ package main
 
 import (
 	"fmt"
-	"math/rand"
+	"math"
 )
 
 func main() {
+	var pi64 = math.Pi
+	var pi32 float32 = math.Pi
 
-	if num := rand.Intn(3); num == 0 {
-		fmt.Println("Yeah, 0")
-	} else if num == 1 {
-		fmt.Println("Okay, 1")
-	} else {
-		fmt.Println("Alright, 3")
-	}
+	fmt.Printf("%f\n", pi64)
+	fmt.Printf("%.2f\n", pi64)
+	fmt.Printf("%5.2f\n", pi64)
+	fmt.Println(pi32)
 }
