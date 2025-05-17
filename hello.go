@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"unicode/utf8"
 )
 
 /*
@@ -64,7 +63,7 @@ func main() {
 		c = c - 'a' + 'A'
 		fmt.Printf("%c \n", c)
 	}
-*/
+
 // refactored to handle int16 and int32 (spanish and russian)
 func main() {
 	message := "uv vagreangvbany fcnpr fgngvba"
@@ -84,7 +83,7 @@ func main() {
 	fmt.Println(utf8.RuneCountInString(words), "runes")
 }
 
-/*
+
 func main() {
 	words := "*okay"
 	c := words[0]
@@ -103,3 +102,8 @@ func main() {
 	}
 }
 */
+
+func main() {
+	half := "test" + "ing"
+	fmt.Println(half)
+}
