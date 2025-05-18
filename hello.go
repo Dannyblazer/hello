@@ -130,6 +130,7 @@ func main() {
 }
 */
 type celcius float32
+type check int
 
 func celsiusToFahrenheit(c int) int {
 	return (c * 9.0 / 5.0) + 32.0
