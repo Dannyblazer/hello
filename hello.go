@@ -65,45 +65,79 @@ func main() {
 	}
 
 // refactored to handle int16 and int32 (spanish and russian)
-func main() {
-	message := "uv vagreangvbany fcnpr fgngvba"
 
-	for _, c := range message {
+	func main() {
+		message := "uv vagreangvbany fcnpr fgngvba"
 
-		if c >= 'a' && c <= 'z' {
-			c = c + 13
-			if c > 'z' {
-				c = c - 26
+		for _, c := range message {
+
+			if c >= 'a' && c <= 'z' {
+				c = c + 13
+				if c > 'z' {
+					c = c - 26
+				}
 			}
+			fmt.Printf("%c", c)
 		}
-		fmt.Printf("%c", c)
+		words := "abcdefghijklmnopqrstuvwxyz"
+		fmt.Println(len(words), "bytes")
+		fmt.Println(utf8.RuneCountInString(words), "runes")
 	}
-	words := "abcdefghijklmnopqrstuvwxyz"
-	fmt.Println(len(words), "bytes")
-	fmt.Println(utf8.RuneCountInString(words), "runes")
+
+	func main() {
+		words := "*okay"
+		c := words[0]
+		fmt.Printf("%c %[1]T \n", c)
+	}
+
+	func main() {
+		question := "¿Cómo estás?"
+		/*fmt.Println(len(question), "bytes")
+		fmt.Println(utf8.RuneCountInString(question), "runes")
+
+		c, size := utf8.DecodeRuneInString(question)
+		fmt.Printf("First rune: %c %v bytes \n", c, size)
+		for i, c := range question {
+			fmt.Printf("%v %c\n", i, c)
+		}
+	}
+*/
+/*func test1(x, y int64) int64 {
+	return x + y
 }
 
-
-func main() {
-	words := "*okay"
-	c := words[0]
-	fmt.Printf("%c %[1]T \n", c)
+func add2(x, y int) int {
+	return x + y
 }
-
 func main() {
-	question := "¿Cómo estás?"
-	/*fmt.Println(len(question), "bytes")
-	fmt.Println(utf8.RuneCountInString(question), "runes")
+	id := "wow"
+	test := (id == "yes" || id == "true" || id == "1")
+	fmt.Println(test)
 
-	c, size := utf8.DecodeRuneInString(question)
-	fmt.Printf("First rune: %c %v bytes \n", c, size)
-	for i, c := range question {
-		fmt.Printf("%v %c\n", i, c)
+	switch id {
+	case "yes", "true", "1":
+		test = true
+		fmt.Println(test)
+	case "no", "false", "0":
+		test = false
+		fmt.Println(test)
+	default:
+		fmt.Println("Error: Invalid choice")
 	}
+	result := test1(2, 4)
+	fmt.Println(result)
+
 }
 */
+type celcius float32
 
+func celsiusToFahrenheit(c int) int {
+	return (c * 9.0 / 5.0) + 32.0
+}
 func main() {
-	half := "test" + "ing"
-	fmt.Println(half)
+	kelvin := 270.0
+	result := celsiusToFahrenheit(int(kelvin))
+	fmt.Printf("The temperature is %v \n", result)
+	var test celcius = 20
+	fmt.Println(test)
 }
