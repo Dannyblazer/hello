@@ -1,8 +1,6 @@
 package main
 
-import (
-	"fmt"
-)
+import "fmt"
 
 /*
 	type Coin struct {
@@ -128,7 +126,7 @@ func main() {
 	fmt.Println(result)
 
 }
-*/
+
 type celcius float32
 type check int
 
@@ -141,4 +139,51 @@ func main() {
 	fmt.Printf("The temperature is %v \n", result)
 	var test celcius = 20
 	fmt.Println(test)
+	}*/
+
+type kelvin float64
+type celcius float64
+type fahrenheit float64
+
+func celciusToKelvin(c celcius) kelvin {
+	return kelvin(c + 273.15)
+}
+
+// Converter Methods
+func (k kelvin) kelvinToCelcius() celcius { // kelvinToCelsius
+	return celcius(k - 273.15)
+}
+
+func (c celcius) celciusToKelvin() kelvin { // CelsiusToKelvin
+	return kelvin(c + 273.15)
+}
+
+func (f fahrenheit) fahrenheitToCelcius() celcius { // FahrenheitToCelsius
+	return celcius((f - 32.0) * 5.0 / 9.0)
+}
+
+func (c celcius) celciusToFahrenheit() fahrenheit { // celsiusToFahrenheit
+	return fahrenheit(c*9.0/5.0) + 32.0
+}
+
+func (k kelvin) kelvinToFahrenheit() fahrenheit { //kelvinToFahrenheit
+	return fahrenheit((k-273.15)*9/5 + 32)
+}
+
+func (f fahrenheit) fahrenheitToKelvin() kelvin { // farenheitToKelvin
+	return kelvin((f-32)*5/9 + 273.15)
+}
+
+func main() {
+	var c celcius = 127
+	cTk := c.celciusToKelvin()
+	fmt.Printf("Here's the result: %vk\n", cTk)
+	kTc := cTk.kelvinToCelcius()
+	cTf := kTc.celciusToFahrenheit()
+	fTc := cTf.fahrenheitToCelcius()
+	kTf := cTk.kelvinToFahrenheit()
+	fTk := cTf.fahrenheitToKelvin()
+
+	fmt.Println(kTf, cTk, kTc, cTf, fTc, fTk)
+
 }
