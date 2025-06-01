@@ -139,7 +139,7 @@ func main() {
 	fmt.Printf("The temperature is %v \n", result)
 	var test celcius = 20
 	fmt.Println(test)
-	}*/
+	}
 
 type kelvin float64
 type celcius float64
@@ -186,4 +186,172 @@ func main() {
 
 	fmt.Println(kTf, cTk, kTc, cTf, fTc, fTk)
 
+}
+
+type kelvin float64
+
+func fakeSensor() kelvin {
+	return kelvin(rand.Intn(151) + 150)
+}
+func realSensor() kelvin {
+	return 0
+}
+func main() {
+	var sensor func() kelvin
+	sensor = fakeSensor
+	fmt.Println(sensor())
+
+	sensor = realSensor
+	fmt.Println(sensor())
+
+}
+
+type kelvin float64
+
+func measureTemperature(samples int, sensor func() kelvin) {
+	for i := 0; i < samples; i++ {
+		k := sensor()
+		fmt.Printf("%vº K\n", k)
+		time.Sleep(time.Second)
+	}
+}
+
+func fakeSensor() kelvin {
+	return kelvin(rand.Intn(151) + 150)
+}
+
+type getRowFn func(row int) (string, string)
+
+func drawTable(rows int, getrow getRowFn) kelvin {
+	name := g
+	fmt.Println(name)
+	return kelvin(rows)
+}
+
+var test getRowFn
+
+func main() {
+	measureTemperature(3, fakeSensor) // LEARN DECLARING FUNCTION TYPES
+	fmt.Println(test)
+	fmt.Println(drawTable(2, getRowFn(test)))
+}
+
+// Anonymous Function
+var f = func() {
+	fmt.Println("Masquerade Done for Annanimos")
+}
+
+func main() {
+	f()
+	func(messages string) {
+		fmt.Println(messages)
+	}("Welcome My Annanimos people!")
+}
+
+type kelvin float64
+
+// sensor function type
+type sensor func() kelvin
+
+func realSensor() kelvin {
+	return 0
+}
+
+func caliberate(s sensor, offset kelvin) sensor {
+	return func() kelvin {
+		return s() + offset
+	}
+}
+func fakeSensor() kelvin {
+	return kelvin(rand.Intn(151) + 150)
+}
+func main() {
+	sensor := caliberate(fakeSensor, 5)
+	fmt.Println(sensor())
+	fmt.Println(sensor())
+}
+
+
+func main() {
+	list := [5]string{"Daniel", "Dozie", "Alucard", "Danny", "Debian"}
+	for _, lis := range list {
+		fmt.Println(lis)
+	}
+	var board [8][8]string
+	board[0][0] = "r"
+	board[0][7] = "r"
+	for column := range board[1] {
+		board[1][column] = "p"
+	}
+
+	fmt.Print(board)
+}*/
+
+// func main() {
+// 	fmt.Println("Welcome to our Pizza App")
+// 	fmt.Println("Please Rate Us between 1-5")
+// 	reader := bufio.NewReader(os.Stdin)
+// 	input, _ := reader.ReadString('\n')
+// 	input = strings.TrimSpace(input)
+
+// 	numRating, err := strconv.ParseFloat(input, 64)
+
+// 	if err != nil {
+// 		fmt.Println(err)
+// 		//panic(err) // Stops Code Exec
+// 	} else if numRating <= 5 {
+// 		fmt.Println("Thanks for rating ", int(numRating)+1)
+// 	} else {
+// 		fmt.Println("Rating should be between 1-5")
+// 	}
+
+// }
+type User struct {
+	Name   string
+	Email  string
+	Gender string
+	Age    int
+}
+
+func main() {
+	lists := [3]string{"Daniel", "Blaze", "Dozie"}
+	fmt.Println(lists)
+
+	var slice = []string{"Yello", "Broski", "Thanks"} //Slice
+	fmt.Println(slice)
+
+	var news = make([]int, 4) // Slices
+
+	news[0] = 2
+	news[1] = 4
+	news[2] = 5
+	news[3] = 7
+
+	slice = append(slice, "Test", "Okay")
+	fmt.Println(slice)
+
+	news = append(news, 23, 12)
+	fmt.Println(news)
+	index := 4
+
+	news = append(news[:index], news[index+1:]...) // POP using double index
+	fmt.Println(news)
+
+	data := make(map[string]string)
+
+	data["py"] = "Python"
+	data["js"] = "Javascript"
+	data["go"] = "Golang"
+	data["jv"] = "Java"
+
+	// Delete data from maps
+	fmt.Println(data)
+
+	delete(data, "jv")
+	fmt.Println(data)
+
+	me := User{"Daniel", "test@gmail.com", "Male", 27}
+
+	fmt.Printf("Name: %v and Age: %v \n", me.Name, me.Age)
+	fmt.Printf("Data: %+v \n", me)
 }
