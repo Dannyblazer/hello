@@ -528,7 +528,7 @@ func shout(t talker) {
 	fmt.Println(louder)
 }
 
-func main() {
+func main1() {
 	// lists := [3]string{"Daniel", "Blaze", "Dozie"}
 	// fmt.Println(lists)
 
@@ -881,6 +881,15 @@ func main() {
 	for _, file := range files {
 		fmt.Println(file.Name())
 	}
+
+	defer func() {
+		if e := recover(); e != nil {
+			fmt.Println(e)
+		}
+	}()
+	// var zero int
+	// _ = 10 / zero
+	panic("Help me!")
 }
 
 type item struct {
