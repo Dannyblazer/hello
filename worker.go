@@ -1,7 +1,8 @@
-package mainz
+package main
 
 import (
 	"fmt"
+	"image"
 	"sync"
 	"time"
 )
@@ -23,23 +24,27 @@ func main() {
 	// }
 	for _, url := range urls {
 		wg.Add(1)
-		go func() {
+		go func(urlString string) {
 			defer wg.Done()
-			fmt.Println(url)
-		}()
+			fmt.Println(urlString)
+		}(url)
 	}
-	//go worker()
+	wg.Add(1)
+	go worker(wg)
 	wg.Wait()
 }
 
-func worker() {
-	n := 0
+func worker(wg sync.WaitGroup) {
+	pos := image.Point{X: 10, Y: 10}
+	direction := image.Point{X: 1, Y: 0}
+
 	next := time.After(time.Second)
 	for {
 		select {
 		case <-next:
-			n++
-			fmt.Println(n)
+			wg.Done()
+			pos = pos.Add(direction)
+			fmt.Println("current location is ", pos)
 			next = time.After(time.Second)
 			// wait for channel stimuli here.
 		}
