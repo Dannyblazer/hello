@@ -5,7 +5,7 @@ import (
 	"sync"
 )
 
-func main() {
+func mains() {
 	var wg sync.WaitGroup
 	stream := make(chan string)
 
